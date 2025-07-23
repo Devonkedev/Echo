@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Echo Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='chat.css') }}">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Anonymous Chat</h2>
+            <span class="chat-subtitle">Chatting with Stranger</span>
+        </div>
+        <div class="chat-box" id="chat-box">
+            {% for message in messages %}
+                <div class="message {{ message.sender }}">
+                    <div class="bubble">
+                        <span class="sender">{{ 'You' if message.sender == 'you' else 'Stranger' }}</span>
+                        <p>{{ message.text }}</p>
+                        <span class="timestamp">{{ message.timestamp }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <form class="chat-input" action="/send" method="POST">
+            <input type="text" name="msg" placeholder="Type something..." required autocomplete="off">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</body>
+</html>
