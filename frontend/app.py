@@ -5,6 +5,11 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/settings', methods=['GET', 'POST'])
+def settings():
+ return render_template('settings.html')
+
 @app.route('/questions', methods=['GET', 'POST'])
 def questions():
     if request.method == 'POST':
