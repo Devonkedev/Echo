@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Echo</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+
+  <style>
+    @font-face {
+      font-family: 'OpenDyslexic';
+      src: url("{{ url_for('static', filename='fonts/OpenDyslexic-Regular.otf') }}") format("opentype");
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'OpenDyslexic', 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #f6f9fb 0%, #e6f0fa 100%);
+      color: #222;
+      min-height: 100vh;
+    }
+
+    nav {
+      background: #a2d2ff;
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 12px rgba(162, 210, 255, 0.15);
+      border-bottom-left-radius: 18px;
+      border-bottom-right-radius: 18px;
+    }
+
+    nav div:first-child {
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #264653;
+    }
+
+    nav a {
+      color: #264653;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    nav a:hover, nav a:focus {
+      background: #bde0fe;
+      color: #0077b6;
+      outline: none;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2.5rem auto 2rem auto;
+      padding: 2.5rem 2rem;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 32px rgba(162, 210, 255, 0.10);
+      min-height: 60vh;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.2rem 0;
+      font-size: 1rem;
+      background: #e6f0fa;
+      color: #555;
+      border-top-left-radius: 18px;
+      border-top-right-radius: 18px;
+      box-shadow: 0 -2px 12px rgba(162, 210, 255, 0.08);
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div><strong>Echo</strong></div>
+    <div>
+      <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('questions') }}">Start</a>
+      <a href="{{ url_for('notes') }}">Notes</a>
+      <a href="{{ url_for('support') }}">Support</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+
+  <footer>
+    &copy; 2025 Echo | Find your echo. Find your voice.
+  </footer>
+</body>
+</html>
