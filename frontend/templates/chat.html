@@ -1,3 +1,99 @@
+{% extends "base.html" %}
+
+{% block mode_toggles %}
+<script>
+function setMode(mode, enabled) {
+  let modes = JSON.parse(localStorage.getItem('echo_modes') || '{}');
+  modes[mode] = enabled;
+  localStorage.setItem('echo_modes', JSON.stringify(modes));
+}
+function getModes() {
+  return JSON.parse(localStorage.getItem('echo_modes') || '{}');
+}
+function applyModes() {
+  const modes = getModes();
+  document.body.classList.toggle('dark-mode', !!modes.dark);
+  document.body.classList.toggle('high-contrast', !!modes.contrast);
+  document.body.classList.toggle('color-blind', !!modes.colorblind);
+}
+document.getElementById('darkModeBtn').onclick = function() {
+  let modes = getModes();
+  setMode('dark', !modes.dark);
+  applyModes();
+};
+document.getElementById('contrastModeBtn').onclick = function() {
+  let modes = getModes();
+  setMode('contrast', !modes.contrast);
+  applyModes();
+};
+document.getElementById('colorBlindBtn').onclick = function() {
+  let modes = getModes();
+  setMode('colorblind', !modes.colorblind);
+  applyModes();
+};
+window.onload = applyModes;
+</script>
+<style>
+.settings-modes {
+  display: flex;
+  gap: 1.2rem;
+}
+.mode-btn {
+  padding: 0.7rem 1.5rem;
+  border-radius: 10px;
+  border: none;
+  background: #e6f0fa;
+  color: #264653;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.mode-btn:hover, .mode-btn:focus {
+  background: #007bff;
+  color: #fff;
+}
+body.dark-mode {
+  background: #181a1b !important;
+  color: #f1f1f1 !important;
+}
+body.dark-mode .container, body.dark-mode .chat-container {
+  background: #23272a !important;
+  color: #f1f1f1 !important;
+}
+body.dark-mode nav, body.dark-mode footer {
+  background: #23272a !important;
+  color: #f1f1f1 !important;
+}
+body.high-contrast {
+  background: #000 !important;
+  color: #fff !important;
+}
+body.high-contrast .container, body.high-contrast .chat-container {
+  background: #000 !important;
+  color: #fff !important;
+  border: 2px solid #fff !important;
+}
+body.high-contrast nav, body.high-contrast footer {
+  background: #000 !important;
+  color: #fff !important;
+}
+body.color-blind .mode-btn {
+  background: #f7e967 !important;
+  color: #222 !important;
+}
+body.color-blind .chat-header, body.color-blind nav {
+  background: #f7e967 !important;
+  color: #222 !important;
+}
+body.color-blind .bubble, body.color-blind .container {
+  background: #fff !important;
+  color: #222 !important;
+}
+</style>
+{% endblock %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,3 +125,4 @@
     </div>
 </body>
 </html>
+{% endblock %}

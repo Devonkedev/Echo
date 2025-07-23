@@ -16,7 +16,7 @@
 
     body {
       margin: 0;
-      font-family: 'OpenDyslexic', 'Segoe UI', Arial, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       background: linear-gradient(135deg, #f6f9fb 0%, #e6f0fa 100%);
       color: #222;
       min-height: 100vh;
@@ -88,13 +88,43 @@
       <a href="{{ url_for('questions') }}">Start</a>
       <a href="{{ url_for('notes') }}">Notes</a>
       <a href="{{ url_for('support') }}">Support</a>
+      <a href="{{ url_for('settings') }}" title="Accessibility & Settings" style="margin-left: 1.5rem; font-size: 1.5rem; vertical-align: middle;">
+        <span aria-label="Settings" role="img">&#9881;</span>
+      </a>
     </div>
   </nav>
 
   <div class="container">
+    {% block mode_toggles %}{% endblock %}
     {% block content %}{% endblock %}
   </div>
+  <script>
+    window.onload = function () {
+      const fontPref = localStorage.getItem("dyslexicFontSwitch");
+  
+      if (fontPref === "true") {
+        document.body.style.fontFamily = "'OpenDyslexic', sans-serif";
+      } else {
+        document.body.style.fontFamily = "'Segoe UI', Arial, sans-serif";
 
+      }
+      const toggle = document.getElementById("dyslexicFontSwitch");
+      if (toggle) {
+        toggle.checked = fontPref === "true";
+        toggle.addEventListener("change", function () {
+          if (toggle.checked) {
+            document.body.style.fontFamily = "'OpenDyslexic', sans-serif";
+            localStorage.setItem("dyslexicFontSwitch", "true");
+          } else {
+            document.body.style.fontFamily = "'Segoe UI', Arial, sans-serif";
+
+            localStorage.removeItem("dyslexicFontSwitch");
+          }
+        });
+      }
+    };
+  </script>
+  
   <footer>
     &copy; 2025 Echo | Find your echo. Find your voice.
   </footer>
