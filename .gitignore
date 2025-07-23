@@ -13,3 +13,5 @@ __pycache__/
 
 # Environment/config files
 .env
+
+__pycache__
