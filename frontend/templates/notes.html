@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='notes.css') }}">
+
+<div class="notes-container">
+  <div class="notes-header">
+    <h2>Your Notes</h2>
+    <input type="text" id="searchInput" placeholder="Search notes..." />
+    <button id="addNoteBtn">+ Add Note</button>
+  </div>
+  <div id="notesList" class="notes-list">
+  </div>
+</div>
+<script src="{{ url_for('static', filename='notes.js') }}"></script>
+{% endblock %}
