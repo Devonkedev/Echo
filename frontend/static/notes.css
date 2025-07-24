@@ -92,30 +92,48 @@ body {
   justify-content: space-between;
 }
 
-.edit-note-btn,
-.delete-note-btn {
+.edit-note-btn, .delete-note-btn {
   border: none;
-  padding: 5px 10px;
-  font-size: 14px;
-  border-radius: 6px;
+  padding: 7px 16px;
+  font-size: 15px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: 0.2s ease, box-shadow 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  outline: none;
 }
 
 .edit-note-btn {
   background-color: #6ec6ff;
-  color: white;
+  color: #fff;
+  font-weight: 600;
+  border: 1.5px solid #4dabf5;
 }
 
 .delete-note-btn {
   background-color: #ff6b6b;
-  color: white;
+  color: #fff;
+  font-weight: 600;
+  border: 1.5px solid #ff4d4d;
 }
 
-.edit-note-btn:hover {
+.edit-note-btn:hover, .edit-note-btn:focus {
   background-color: #4dabf5;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(110,198,255,0.18);
+  border-color: #2196f3;
 }
 
-.delete-note-btn:hover {
+.delete-note-btn:hover, .delete-note-btn:focus {
   background-color: #ff4d4d;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(255,107,107,0.18);
+  border-color: #c62828;
+}
+
+.edit-note-btn:active, .delete-note-btn:active {
+  transform: scale(0.97);
 }
